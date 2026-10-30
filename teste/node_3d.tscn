@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://c1s0dgi3eta3a"]
+
+[ext_resource type="Script" uid="uid://df8yi700ficgp" path="res://character_body_3d.gd" id="1_a202f"]
+[ext_resource type="Script" uid="uid://b8nwrpvgtye3a" path="res://bobmarley.gd" id="2_noarx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spqoq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7iy4k"]
+material = SubResource("ShaderMaterial_spqoq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_as5w1"]
+margin = 0.0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iu802"]
+
+[sub_resource type="Sky" id="Sky_spqoq"]
+sky_material = SubResource("ProceduralSkyMaterial_iu802")
+
+[sub_resource type="Environment" id="Environment_spqoq"]
+background_mode = 2
+sky = SubResource("Sky_spqoq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t7aom"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_as5w1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7iy4k"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_spqoq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_as5w1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu802"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7iy4k"]
+
+[node name="piso" type="Node3D" unique_id=1792897197]
+
+[node name="floor" type="StaticBody3D" parent="." unique_id=740663460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2927773, -0.10584462)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor" unique_id=868921947]
+transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 40, 0, 0, 0)
+mesh = SubResource("BoxMesh_7iy4k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor" unique_id=697544930]
+transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 40, 0, 0, 0)
+shape = SubResource("BoxShape3D_as5w1")
+
+[node name="ilum" type="DirectionalLight3D" parent="." unique_id=1418244092]
+transform = Transform3D(0.4263506, 0.90117604, -0.07814675, 0.61940694, -0.22789738, 0.75126415, 0.6592119, -0.36870655, -0.65535885, 1, 1, 1)
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.397
+shadow_normal_bias = 0.317
+shadow_transmittance_bias = 7.971
+shadow_blur = 2.544
+
+[node name="sky" type="WorldEnvironment" parent="." unique_id=801222561]
+environment = SubResource("Environment_spqoq")
+
+[node name="cube" type="StaticBody3D" parent="." unique_id=321217806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5853, 3.3480172, 0.32732868)
+
+[node name="CollisionShaWpe3D" type="CollisionShape3D" parent="cube" unique_id=1417656778]
+shape = SubResource("BoxShape3D_t7aom")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cube" unique_id=1223491053]
+mesh = SubResource("BoxMesh_as5w1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1035341604]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1267797346]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=1443425586]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -12.0
+offset_right = 6.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "+"
+
+[node name="Node3D" type="Node3D" parent="." unique_id=254233019]
+
+[node name="player" type="CharacterBody3D" parent="Node3D" unique_id=1422574920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.575611, 2.8273225, -2.7638006)
+script = ExtResource("1_a202f")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/player" unique_id=478019051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00968951, 0.55048513, 0.32732868)
+
+[node name="RayCast3D" type="RayCast3D" parent="Node3D/player/Camera3D" unique_id=453497409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.029790401, 0)
+target_position = Vector3(0, 0, -100)
+
+[node name="Marker3D" type="Marker3D" parent="Node3D/player/Camera3D" unique_id=919169408]
+transform = Transform3D(0.9998477, 0.017452406, 0, -0.017452406, 0.9998477, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="colisorpl" type="CollisionShape3D" parent="Node3D/player" unique_id=1862601612]
+shape = SubResource("CapsuleShape3D_7iy4k")
+
+[node name="plymodel" type="MeshInstance3D" parent="Node3D/player" unique_id=431523867]
+mesh = SubResource("CapsuleMesh_spqoq")
+
+[node name="inimigos" type="Node3D" parent="." unique_id=335686058]
+
+[node name="enemy" type="CharacterBody3D" parent="inimigos" unique_id=195757823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8557453, 0)
+script = ExtResource("2_noarx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="inimigos/enemy" unique_id=550926524]
+shape = SubResource("CapsuleShape3D_as5w1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="inimigos/enemy" unique_id=1215880184]
+material_override = SubResource("StandardMaterial3D_iu802")
+mesh = SubResource("CapsuleMesh_7iy4k")
+
+[node name="enemy" type="CharacterBody3D" parent="." unique_id=1993626785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.176036, 2.8557453, 0)
+script = ExtResource("2_noarx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy" unique_id=318808391]
+shape = SubResource("CapsuleShape3D_as5w1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy" unique_id=2127846574]
+material_override = SubResource("StandardMaterial3D_iu802")
+mesh = SubResource("CapsuleMesh_7iy4k")

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://jc86ch6745q0"]
+
+[ext_resource type="Script" uid="uid://dgmmxs2bqvjxk" path="res://progetil.gd" id="1_2q6ms"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu802"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.9666667, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7iy4k"]
+material = SubResource("StandardMaterial3D_iu802")
+radius = 0.002
+height = 0.004
+
+[sub_resource type="Skin" id="Skin_as5w1"]
+
+[node name="progetil" type="MeshInstance3D" unique_id=838743568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.1, 0.1)
+mesh = SubResource("SphereMesh_7iy4k")
+skin = SubResource("Skin_as5w1")
+script = ExtResource("1_2q6ms")
